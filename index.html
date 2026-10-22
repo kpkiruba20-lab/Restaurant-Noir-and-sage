@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOIR &amp; SAGE | Contemporary Fine Dining, Chennai</title>
+<meta name="description" content="NOIR & SAGE is a contemporary fine-dining restaurant in Chennai serving seasonal tasting menus and modern Indian-European cuisine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { noir: '#0B0B0A', noir2: '#121210', ivory: '#F3EFE6', gold: '#C9A96E', muted: '#A9A49A' },
+        fontFamily: {
+          display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif']
+        }
+      }
+    }
+  };
+  // Image fallback: swaps any broken image for an inline SVG placeholder
+  function imgFail(el) {
+    el.onerror = null;
+    el.src = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 800 600%27%3E%3Crect width=%27800%27 height=%27600%27 fill=%27%23121210%27/%3E%3Ccircle cx=%27400%27 cy=%27300%27 r=%2770%27 fill=%27none%27 stroke=%27%23C9A96E%27 stroke-width=%272%27/%3E%3Ccircle cx=%27400%27 cy=%27300%27 r=%2740%27 fill=%27none%27 stroke=%27%23C9A96E%27 stroke-opacity=%27.5%27/%3E%3C/svg%3E";
+  }
+</script>
+<style>
+  body { background:#0B0B0A; color:#F3EFE6; font-family:Inter,system-ui,sans-serif; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  section[id] { scroll-margin-top: 4.5rem; }
+  ::selection { background:#C9A96E; color:#0B0B0A; }
+  .eyebrow { font-size:.72rem; letter-spacing:.32em; text-transform:uppercase; color:#C9A96E; }
+  .gold-line { height:1px; width:3.5rem; background:#C9A96E; }
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+  .hero-in { opacity:0; animation:heroIn 1.2s ease forwards; }
+  @keyframes heroIn { from { opacity:0; transform:translateY(20px);} to { opacity:1; transform:none; } }
+  .nav-link { position:relative; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:#A9A49A; transition:color .3s; }
+  .nav-link::after { content:""; position:absolute; left:0; bottom:-6px; height:1px; width:0; background:#C9A96E; transition:width .3s; }
+  .nav-link:hover, .nav-link.active { color:#F3EFE6; }
+  .nav-link:hover::after, .nav-link.active::after { width:100%; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 2rem; font-size:.75rem; letter-spacing:.2em; text-transform:uppercase; font-weight:500; transition:all .35s ease; cursor:pointer; }
+  .btn-gold { background:#C9A96E; color:#0B0B0A; border:1px solid #C9A96E; }
+  .btn-gold:hover { background:transparent; color:#C9A96E; }
+  .btn-ghost { border:1px solid rgba(243,239,230,.35); color:#F3EFE6; }
+  .btn-ghost:hover { border-color:#C9A96E; color:#C9A96E; }
+  .glass { background:rgba(11,11,10,.55); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+  .filter-btn { min-height:44px; padding:0 1.4rem; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; border:1px solid rgba(243,239,230,.18); color:#A9A49A; transition:all .3s; }
+  .filter-btn:hover { color:#F3EFE6; border-color:#C9A96E; }
+  .filter-btn.active { background:#C9A96E; color:#0B0B0A; border-color:#C9A96E; }
+  .menu-card { background:#121210; border:1px solid rgba(243,239,230,.08); transition:transform .5s ease, border-color .5s ease, box-shadow .5s ease; animation:cardIn .6s ease both; }
+  .menu-card:hover { transform:translateY(-6px); border-color:rgba(201,169,110,.5); box-shadow:0 24px 50px -20px rgba(0,0,0,.9); }
+  .menu-card img { transition:transform .9s ease; }
+  .menu-card:hover img { transform:scale(1.07); }
+  @keyframes cardIn { from { opacity:0; transform:translateY(14px);} to { opacity:1; transform:none; } }
+  .field { width:100%; min-height:48px; background:transparent; border:0; border-bottom:1px solid rgba(243,239,230,.25); color:#F3EFE6; padding:.7rem 0; font-size:.95rem; transition:border-color .3s; border-radius:0; }
+  .field:focus { outline:none; border-color:#C9A96E; }
+  .field.invalid { border-color:#d97b6c; }
+  .field option { background:#121210; color:#F3EFE6; }
+  input[type="date"]::-webkit-calendar-picker-indicator { filter:invert(.8); cursor:pointer; }
+  label.lbl { display:block; font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:#A9A49A; }
+  .err { color:#e0897b; font-size:.75rem; min-height:1rem; margin-top:.25rem; }
+  :focus-visible { outline:2px solid #C9A96E; outline-offset:3px; }
+  #mobile-menu { max-height:0; overflow:hidden; transition:max-height .5s ease; }
+  .bar { display:block; height:1px; width:24px; background:#F3EFE6; transition:transform .35s ease, opacity .25s ease; }
+  #mobile-menu[aria-hidden="true"] { pointer-events:none; }
+  .mobile-link { display:flex; align-items:center; min-height:48px; }
+  @media (max-width:639px) {
+    .eyebrow { font-size:.64rem; letter-spacing:.25em; }
+    .btn { width:100%; padding-inline:1.25rem; }
+    #home > .glass { position:relative; }
+    #home .hero-in h1 { overflow-wrap:anywhere; }
+  }
+  @media (min-width:640px) {
+    #home > .glass { position:absolute; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior:auto !important; }
+    *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    .reveal, .hero-in { opacity:1 !important; transform:none !important; }
+  }
+</style>
+</head>
+<body>
+<a href="#menu" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-gold focus:text-noir focus:px-4 focus:py-2">Skip to menu</a>
+
+<!-- ============ NAVIGATION ============ -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-[72px] flex items-center justify-between" aria-label="Main navigation">
+    <a href="#home" class="font-display text-2xl tracking-[.14em] text-ivory" aria-label="NOIR &amp; SAGE home">NOIR <span class="text-gold">&amp;</span> SAGE</a>
+    <div class="hidden lg:flex items-center gap-9">
+      <a href="#home" class="nav-link" data-link="home">Home</a>
+      <a href="#menu" class="nav-link" data-link="menu">Menu</a>
+      <a href="#story" class="nav-link" data-link="story">Our Story</a>
+      <a href="#reservations" class="nav-link" data-link="reservations">Reservations</a>
+      <a href="#contact" class="nav-link" data-link="contact">Contact</a>
+      <a href="#reservations" class="btn btn-gold !min-h-[42px] !px-6">Reserve</a>
+    </div>
+    <button id="menu-toggle" class="lg:hidden w-11 h-11 flex flex-col items-center justify-center gap-[7px]" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="bar" id="bar1"></span><span class="bar" id="bar2"></span><span class="bar" id="bar3"></span>
+    </button>
+  </nav>
+  <div id="mobile-menu" class="lg:hidden glass border-t border-white/10" aria-hidden="true">
+    <div class="px-5 sm:px-8 py-6 flex flex-col gap-1">
+      <a href="#home" class="mobile-link py-3 text-sm tracking-[.2em] uppercase text-ivory border-b border-white/10">Home</a>
+      <a href="#menu" class="mobile-link py-3 text-sm tracking-[.2em] uppercase text-ivory border-b border-white/10">Menu</a>
+      <a href="#story" class="mobile-link py-3 text-sm tracking-[.2em] uppercase text-ivory border-b border-white/10">Our Story</a>
+      <a href="#reservations" class="mobile-link py-3 text-sm tracking-[.2em] uppercase text-ivory border-b border-white/10">Reservations</a>
+      <a href="#contact" class="mobile-link py-3 text-sm tracking-[.2em] uppercase text-ivory">Contact</a>
+      <a href="#reservations" class="mobile-link btn btn-gold mt-4">Reserve a Table</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ HOME ============ -->
+<section id="home" class="relative min-h-[100svh] flex items-center overflow-hidden">
+  <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=75" alt="Elegantly plated contemporary dish on a dark table" class="absolute inset-0 w-full h-full object-cover" onerror="imgFail(this)">
+  <div class="absolute inset-0 bg-gradient-to-b from-noir/80 via-noir/60 to-noir"></div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-28 pb-44 w-full">
+    <p class="eyebrow hero-in" style="animation-delay:.1s">Contemporary Fine Dining · Chennai</p>
+    <h1 class="font-display font-medium leading-[1.02] mt-5 text-5xl sm:text-7xl lg:text-8xl hero-in" style="animation-delay:.3s">An evening written<br>in <em class="text-gold">smoke &amp; season</em></h1>
+    <p class="mt-7 max-w-xl text-muted text-base sm:text-lg leading-relaxed font-light hero-in" style="animation-delay:.5s">NOIR &amp; SAGE is a twenty-eight seat dining room where Indian memory meets European technique, one thoughtful course at a time.</p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 hero-in" style="animation-delay:.7s">
+      <a href="#menu" class="btn btn-gold">Explore Menu</a>
+      <a href="#reservations" class="btn btn-ghost">Reserve a Table</a>
+    </div>
+  </div>
+  <div class="absolute bottom-0 inset-x-0 glass border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-5 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8">
+      <div class="flex items-center gap-4"><span class="text-gold font-display text-3xl leading-none">01</span><div><p class="text-sm tracking-[.14em] uppercase">Seasonal Ingredients</p><p class="text-xs text-muted mt-1">Sourced within 300 km, weekly</p></div></div>
+      <div class="flex items-center gap-4"><span class="text-gold font-display text-3xl leading-none">02</span><div><p class="text-sm tracking-[.14em] uppercase">Chef-Curated Menu</p><p class="text-xs text-muted mt-1">Designed by Chef Arjun Menon</p></div></div>
+      <div class="flex items-center gap-4"><span class="text-gold font-display text-3xl leading-none">03</span><div><p class="text-sm tracking-[.14em] uppercase">Intimate Dining</p><p class="text-xs text-muted mt-1">Just 28 seats, candlelit</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section id="menu" class="py-24 sm:py-32 bg-noir">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow">The Menu</p>
+      <h2 class="font-display text-4xl sm:text-6xl mt-4">Composed with <em class="text-gold">intent</em></h2>
+      <div class="gold-line mx-auto mt-6"></div>
+      <p class="text-muted mt-6 font-light leading-relaxed">Our menu follows the market and changes with the seasons. Each plate is built around a single ingredient at its peak.</p>
+    </div>
+    <div id="menu-filters" class="mt-12 flex flex-wrap justify-center gap-3 reveal" role="group" aria-label="Filter menu by category"></div>
+    <div id="menu-grid" class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" aria-live="polite" aria-busy="false"></div>
+    <p class="text-center text-xs text-muted mt-12 tracking-wide">All prices in INR, exclusive of taxes. Please inform us of any allergies before ordering.</p>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="story" class="py-24 sm:py-32 bg-noir2 border-y border-white/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+    <div class="relative reveal">
+      <div class="overflow-hidden border border-white/10 aspect-[4/5] sm:aspect-[5/6]">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=75" alt="Warmly lit dining room of NOIR &amp; SAGE with set tables" loading="lazy" class="w-full h-full object-cover" onerror="imgFail(this)">
+      </div>
+      <div class="hidden sm:block absolute -bottom-6 -right-6 w-40 h-40 border border-gold/50 -z-0 pointer-events-none"></div>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Our Story</p>
+      <h2 class="font-display text-4xl sm:text-6xl mt-4 leading-tight">Quiet room. <em class="text-gold">Loud flavour.</em></h2>
+      <div class="gold-line mt-6"></div>
+      <p class="text-muted mt-6 leading-relaxed font-light">NOIR &amp; SAGE opened in 2018 after Chef Arjun Menon returned to Chennai from a decade in the kitchens of London and Copenhagen. He wanted a restaurant that felt like a private dinner, where the cooking spoke softly but left a lasting impression.</p>
+      <p class="text-muted mt-4 leading-relaxed font-light">Our philosophy is simple: cook what the season offers. Curry leaf from a Mahabalipuram farm, line-caught fish from Kovalam, mushrooms foraged in the Nilgiris. Fire, smoke and patience do the rest.</p>
+      <p class="text-muted mt-4 leading-relaxed font-light">Inside, expect low amber light, dark walnut, linen and a soundtrack of soft jazz. It is a room made for anniversaries, long conversations and unhurried evenings.</p>
+      <div class="grid grid-cols-2 gap-px bg-white/10 border border-white/10 mt-10">
+        <div class="bg-noir2 p-6"><p class="font-display text-4xl sm:text-5xl text-gold"><span class="counter" data-target="12" data-suffix="+">0</span></p><p class="text-xs tracking-[.16em] uppercase text-muted mt-2">Seasonal Creations</p></div>
+        <div class="bg-noir2 p-6"><p class="font-display text-4xl sm:text-5xl text-gold"><span class="counter" data-target="8">0</span></p><p class="text-xs tracking-[.16em] uppercase text-muted mt-2">Years of Craft</p></div>
+        <div class="bg-noir2 p-6"><p class="font-display text-4xl sm:text-5xl text-gold"><span class="counter" data-target="4.9" data-decimals="1">0</span></p><p class="text-xs tracking-[.16em] uppercase text-muted mt-2">Guest Rating</p></div>
+        <div class="bg-noir2 p-6"><p class="font-display text-4xl sm:text-5xl text-gold"><span class="counter" data-target="100" data-suffix="%">0</span></p><p class="text-xs tracking-[.16em] uppercase text-muted mt-2">Fresh Ingredients</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVATIONS ============ -->
+<section id="reservations" class="py-24 sm:py-32 bg-noir">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 grid lg:grid-cols-5 gap-12 lg:gap-16">
+    <div class="lg:col-span-2 reveal">
+      <p class="eyebrow">Reservations</p>
+      <h2 class="font-display text-4xl sm:text-6xl mt-4 leading-tight">Reserve your <em class="text-gold">evening</em></h2>
+      <div class="gold-line mt-6"></div>
+      <p class="text-muted mt-6 font-light leading-relaxed">Share your details and we will confirm your table on WhatsApp within a few hours. For parties of eight or more, or private dining, please call us directly.</p>
+      <ul class="mt-8 space-y-4 text-sm text-muted">
+        <li class="flex gap-3"><span class="text-gold">—</span>Tables held for 15 minutes past reservation time</li>
+        <li class="flex gap-3"><span class="text-gold">—</span>Smart elegant dress code</li>
+        <li class="flex gap-3"><span class="text-gold">—</span>Vegetarian and vegan tasting menus available</li>
+      </ul>
+    </div>
+    <form id="reservation-form" class="lg:col-span-3 bg-noir2 border border-white/10 p-6 sm:p-10 reveal" novalidate>
+      <div class="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+        <div class="sm:col-span-2"><label class="lbl" for="name">Full Name</label><input class="field" id="name" name="name" type="text" autocomplete="name" placeholder="Your full name" required><p class="err" id="err-name"></p></div>
+        <div><label class="lbl" for="phone">Phone Number</label><input class="field" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" required><p class="err" id="err-phone"></p></div>
+        <div><label class="lbl" for="email">Email</label><input class="field" id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required><p class="err" id="err-email"></p></div>
+        <div><label class="lbl" for="date">Date</label><input class="field" id="date" name="date" type="date" required><p class="err" id="err-date"></p></div>
+        <div><label class="lbl" for="time">Preferred Time</label>
+          <select class="field" id="time" name="time" required>
+            <option value="">Select a time</option>
+            <option>6:30 PM</option><option>7:00 PM</option><option>7:30 PM</option><option>8:00 PM</option><option>8:30 PM</option><option>9:00 PM</option><option>9:30 PM</option><option>10:00 PM</option>
+          </select><p class="err" id="err-time"></p></div>
+        <div><label class="lbl" for="guests">Number of Guests</label>
+          <select class="field" id="guests" name="guests" required>
+            <option value="">Select guests</option>
+            <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5 Guests</option><option>6 Guests</option><option>7 Guests</option>
+          </select><p class="err" id="err-guests"></p></div>
+        <div><label class="lbl" for="seating">Seating Preference</label>
+          <select class="field" id="seating" name="seating">
+            <option>No preference</option><option>Main dining room</option><option>Window table</option><option>Chef's counter</option><option>Private alcove</option>
+          </select></div>
+        <div class="sm:col-span-2"><label class="lbl" for="occasion">Occasion</label>
+          <select class="field" id="occasion" name="occasion">
+            <option>Dinner out</option><option>Anniversary</option><option>Birthday</option><option>Date night</option><option>Business dinner</option><option>Celebration</option>
+          </select></div>
+        <div class="sm:col-span-2"><label class="lbl" for="request">Special Request</label><textarea class="field resize-none" id="request" name="request" rows="3" placeholder="Allergies, dietary needs, flowers on the table..."></textarea></div>
+      </div>
+      <button type="submit" class="btn btn-gold w-full mt-9">Request Reservation via WhatsApp</button>
+      <p id="form-status" class="text-xs text-muted mt-4 text-center min-h-[1rem]" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section id="contact" class="py-24 sm:py-32 bg-noir2 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow">Find Us</p>
+      <h2 class="font-display text-4xl sm:text-6xl mt-4">Visit <em class="text-gold">NOIR &amp; SAGE</em></h2>
+      <div class="gold-line mx-auto mt-6"></div>
+    </div>
+    <div class="mt-14 grid lg:grid-cols-2 gap-10 lg:gap-14 items-stretch">
+      <div class="reveal flex flex-col justify-between gap-10">
+        <div class="grid sm:grid-cols-2 gap-8">
+          <div><h3 class="eyebrow">Address</h3><address class="not-italic mt-3 text-ivory/90 font-light leading-relaxed">NOIR &amp; SAGE<br>14, Boat Club Road<br>R.A. Puram, Chennai<br>Tamil Nadu 600028</address></div>
+          <div><h3 class="eyebrow">Opening Hours</h3>
+            <dl class="mt-3 text-sm font-light space-y-1.5">
+              <div class="flex justify-between gap-4"><dt class="text-muted">Tue – Thu</dt><dd>6:30 PM – 11:00 PM</dd></div>
+              <div class="flex justify-between gap-4"><dt class="text-muted">Fri – Sat</dt><dd>6:30 PM – 11:30 PM</dd></div>
+              <div class="flex justify-between gap-4"><dt class="text-muted">Sunday</dt><dd>12:30 PM – 10:30 PM</dd></div>
+              <div class="flex justify-between gap-4"><dt class="text-muted">Monday</dt><dd>Closed</dd></div>
+            </dl></div>
+          <div><h3 class="eyebrow">Phone</h3><a id="phone-link" href="tel:+919876543210" class="block mt-3 font-light hover:text-gold transition-colors">+91 98765 43210</a></div>
+          <div><h3 class="eyebrow">Email</h3><a href="mailto:reserve@noirandsage.example" class="block mt-3 font-light hover:text-gold transition-colors break-all">reserve@noirandsage.example</a></div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a id="whatsapp-btn" href="#" target="_blank" rel="noopener" class="btn btn-gold">WhatsApp Us</a>
+          <a id="directions-btn" href="#" target="_blank" rel="noopener" class="btn btn-ghost">Get Directions</a>
+        </div>
+        <p class="text-xs text-muted">Portfolio concept: NOIR &amp; SAGE is a fictional restaurant created for design demonstration.</p>
+      </div>
+      <div class="reveal border border-white/10 min-h-[320px] lg:min-h-[420px] relative">
+        <iframe id="map-frame" title="Map showing the location of NOIR &amp; SAGE in Chennai" class="absolute inset-0 w-full h-full" style="border:0;filter:grayscale(1) invert(.92) contrast(.9)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-noir border-t border-white/10 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div>
+        <a href="#home" class="font-display text-2xl tracking-[.14em]">NOIR <span class="text-gold">&amp;</span> SAGE</a>
+        <p class="text-sm text-muted mt-4 font-light leading-relaxed">Contemporary fine dining in the heart of Chennai. Seasonal, fire-led and quietly luxurious.</p>
+      </div>
+      <div>
+        <h3 class="eyebrow">Explore</h3>
+        <ul class="mt-4 space-y-3 text-sm text-muted">
+          <li><a href="#home" class="hover:text-gold transition-colors">Home</a></li>
+          <li><a href="#menu" class="hover:text-gold transition-colors">Menu</a></li>
+          <li><a href="#story" class="hover:text-gold transition-colors">Our Story</a></li>
+          <li><a href="#reservations" class="hover:text-gold transition-colors">Reservations</a></li>
+          <li><a href="#contact" class="hover:text-gold transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="eyebrow">Hours</h3>
+        <ul class="mt-4 space-y-3 text-sm text-muted">
+          <li>Tue – Thu · 6:30 PM – 11:00 PM</li>
+          <li>Fri – Sat · 6:30 PM – 11:30 PM</li>
+          <li>Sunday · 12:30 PM – 10:30 PM</li>
+          <li>Monday · Closed</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="eyebrow">Contact</h3>
+        <ul class="mt-4 space-y-3 text-sm text-muted">
+          <li>14, Boat Club Road, R.A. Puram, Chennai 600028</li>
+          <li><a href="tel:+919876543210" class="hover:text-gold transition-colors">+91 98765 43210</a></li>
+        </ul>
+        <a id="footer-whatsapp" href="#" target="_blank" rel="noopener" class="btn btn-ghost !min-h-[44px] mt-5">WhatsApp</a>
+      </div>
+    </div>
+    <div class="mt-14 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-2 text-xs text-muted">
+      <p>&copy; <span id="year">2026</span> NOIR &amp; SAGE. All rights reserved.</p>
+      <p>A fictional restaurant concept for portfolio purposes.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ CONFIGURATION (edit here) ============ */
+const CONFIG = {
+  whatsappNumber: "919876543210",
+  restaurantName: "NOIR & SAGE",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Boat+Club+Road+R.A.+Puram+Chennai",
+  mapsEmbedUrl: "https://www.google.com/maps?q=Boat+Club+Road+R.A.+Puram+Chennai&output=embed"
+};
+
+/* ============ MENU DATA ============ */
+/* ============ DISH ILLUSTRATIONS (inline SVG, generated per dish) ============ */
+const ring = (n, r, f, off = 0, cx = 400, cy = 300) => Array.from({ length: n }, (_, i) => {
+  const a = (i / n) * 6.2832 + off;
+  return f(+(cx + r * Math.cos(a)).toFixed(1), +(cy + r * Math.sin(a)).toFixed(1), i, +(a * 57.3).toFixed(1));
+}).join("");
+const artFrame = (inner) => `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'><defs><radialGradient id='bg' cx='50%' cy='45%' r='75%'><stop offset='0' stop-color='#26231e'/><stop offset='1' stop-color='#0b0b0a'/></radialGradient><radialGradient id='pl' cx='50%' cy='40%' r='65%'><stop offset='0' stop-color='#2e2b26'/><stop offset='1' stop-color='#181715'/></radialGradient><filter id='sh' x='-20%' y='-20%' width='140%' height='140%'><feDropShadow dx='0' dy='6' stdDeviation='7' flood-opacity='.55'/></filter></defs><rect width='800' height='600' fill='url(#bg)'/><circle cx='400' cy='300' r='250' fill='url(#pl)' stroke='#C9A96E' stroke-opacity='.45' stroke-width='2' filter='url(#sh)'/><circle cx='400' cy='300' r='205' fill='none' stroke='#C9A96E' stroke-opacity='.18'/>${inner}</svg>`;
+const ART = {
+  mushrooms: () => `<g filter='url(#sh)'><g fill='#e8dcc2'><rect x='318' y='330' width='34' height='70' rx='14' transform='rotate(-20 335 365)'/><rect x='430' y='340' width='34' height='72' rx='14' transform='rotate(15 447 376)'/><rect x='375' y='300' width='36' height='80' rx='14'/></g><g fill='#7a5a3a'><ellipse cx='320' cy='320' rx='70' ry='48' transform='rotate(-20 320 320)'/><ellipse cx='462' cy='330' rx='66' ry='46' transform='rotate(15 462 330)'/><ellipse cx='392' cy='268' rx='78' ry='52'/></g><g fill='#3d2a1a' opacity='.6'><ellipse cx='392' cy='256' rx='50' ry='22'/><ellipse cx='320' cy='308' rx='40' ry='16' transform='rotate(-20 320 308)'/><ellipse cx='462' cy='318' rx='38' ry='15' transform='rotate(15 462 318)'/></g></g>`
+    + ring(7, 150, (x, y, i, a) => `<ellipse cx='${x}' cy='${y}' rx='20' ry='9' fill='#14100d' stroke='#C9A96E' stroke-opacity='.4' transform='rotate(${a} ${x} ${y})'/>`, .3)
+    + ring(9, 120, (x, y) => `<circle cx='${x}' cy='${y}' r='7' fill='#b98a52'/>`, .1)
+    + ring(10, 175, (x, y) => `<circle cx='${x}' cy='${y}' r='5' fill='#7a9a5b'/>`, .5),
+  burrata: () => ring(8, 165, (x, y, i) => `<circle cx='${x}' cy='${y}' r='34' fill='${i % 3 ? "#c8402f" : "#e0a93a"}'/><circle cx='${x - 8}' cy='${y - 8}' r='12' fill='#fff' opacity='.18'/>`)
+    + ring(8, 165, (x, y, i, a) => `<ellipse cx='${x + 14}' cy='${y + 10}' rx='18' ry='8' fill='#5f8f4a' transform='rotate(${a} ${x + 14} ${y + 10})'/>`, .4)
+    + `<g filter='url(#sh)'><circle cx='400' cy='300' r='105' fill='#f3efe6'/><circle cx='400' cy='300' r='105' fill='none' stroke='#d8d0bd' stroke-width='3'/><path d='M355 272q45-34 90 0' stroke='#fff' stroke-width='7' fill='none' opacity='.8' stroke-linecap='round'/></g>`
+    + ring(14, 70, (x, y) => `<circle cx='${x}' cy='${y}' r='5' fill='#8fb361'/>`, .2),
+  scallops: () => `<circle cx='400' cy='300' r='160' fill='#d98a2b' opacity='.85'/><circle cx='400' cy='300' r='110' fill='#e8a548' opacity='.6'/>`
+    + ring(8, 185, (x, y) => `<circle cx='${x}' cy='${y}' r='22' fill='#c9a96e' opacity='.55'/><circle cx='${x}' cy='${y}' r='8' fill='#181715'/>`, .2)
+    + `<g filter='url(#sh)'>` + ring(3, 72, (x, y) => `<circle cx='${x}' cy='${y}' r='50' fill='#efe3cc'/><circle cx='${x}' cy='${y}' r='38' fill='#c98d4e'/><circle cx='${x - 8}' cy='${y - 8}' r='14' fill='#e3b27a' opacity='.7'/>`, -1.5) + `</g>`
+    + ring(12, 135, (x, y) => `<circle cx='${x}' cy='${y}' r='5' fill='#7ea45a'/>`, .3),
+  risotto: () => `<g filter='url(#sh)'><circle cx='400' cy='300' r='160' fill='#d6c9a6'/></g>`
+    + [[40, 8], [85, 14], [125, 20], [152, 24]].map(([r, n]) => ring(n, r, (x, y, i, a) => `<ellipse cx='${x}' cy='${y}' rx='15' ry='6' fill='${i % 2 ? "#f1e8cf" : "#e6dab8"}' transform='rotate(${a + 40} ${x} ${y})'/>`)).join("")
+    + ring(6, 95, (x, y, i, a) => `<ellipse cx='${x}' cy='${y}' rx='20' ry='11' fill='#1b1410' transform='rotate(${a} ${x} ${y})'/><ellipse cx='${x - 4}' cy='${y - 3}' rx='8' ry='3' fill='#4a3a30' transform='rotate(${a} ${x} ${y})'/>`, .5)
+    + ring(5, 60, (x, y, i, a) => `<rect x='${x - 22}' y='${y - 4}' width='44' height='8' rx='4' fill='#fbf3da' transform='rotate(${a * 2} ${x} ${y})'/>`, 1)
+    + ring(9, 140, (x, y, i, a) => `<rect x='${x - 14}' y='${y - 2}' width='28' height='4' rx='2' fill='#6f9a45' transform='rotate(${a + 90} ${x} ${y})'/>`, .2),
+  seabass: () => `<circle cx='400' cy='315' r='150' fill='#ece3cc' opacity='.9'/><circle cx='400' cy='315' r='110' fill='#f6efdb' opacity='.7'/>`
+    + `<g filter='url(#sh)'><rect x='262' y='245' width='280' height='125' rx='55' fill='#d8c08e' transform='rotate(-12 400 308)'/><rect x='282' y='252' width='240' height='80' rx='40' fill='#5f8a3e' transform='rotate(-12 400 308)'/></g>`
+    + ring(26, 70, (x, y, i) => `<circle cx='${x + (i % 3) * 20 - 20}' cy='${y - 12}' r='${3 + (i % 3)}' fill='#a5c978'/>`, .3, 400, 300)
+    + [0, 1, 2, 3].map((i) => `<path d='M${210 + i * 18} ${440 - i * 8}q60-70 150-60' stroke='#8bb45b' stroke-width='14' fill='none' stroke-linecap='round'/><path d='M${210 + i * 18} ${440 - i * 8}q60-70 150-60' stroke='#d9ecb0' stroke-width='3' fill='none' stroke-linecap='round' opacity='.6'/>`).slice(0, 2).join("")
+    + ring(8, 190, (x, y) => `<circle cx='${x}' cy='${y}' r='6' fill='#f3efe6' opacity='.7'/>`, .6),
+  lamb: () => `<circle cx='400' cy='305' r='175' fill='#4a1f17' opacity='.95'/><circle cx='400' cy='305' r='130' fill='#5e2a1d' opacity='.7'/>`
+    + `<g filter='url(#sh)'><rect x='500' y='235' width='80' height='26' rx='13' fill='#efe6cf' transform='rotate(-25 540 248)'/><circle cx='586' cy='214' r='20' fill='#efe6cf'/><circle cx='566' cy='212' r='16' fill='#efe6cf'/><ellipse cx='385' cy='305' rx='155' ry='98' fill='#6b3a22' transform='rotate(-18 385 305)'/><ellipse cx='370' cy='285' rx='110' ry='56' fill='#8a5233' opacity='.8' transform='rotate(-18 370 285)'/><ellipse cx='340' cy='265' rx='50' ry='16' fill='#b57a50' opacity='.6' transform='rotate(-18 340 265)'/></g>`
+    + ring(14, 170, (x, y, i) => `<circle cx='${x}' cy='${y}' r='${6 + (i % 3)}' fill='#b3202f'/><circle cx='${x - 2}' cy='${y - 2}' r='2' fill='#fff' opacity='.5'/>`, .15)
+    + ring(8, 110, (x, y, i, a) => `<rect x='${x - 12}' y='${y - 2}' width='24' height='4' rx='2' fill='#7da84f' transform='rotate(${a} ${x} ${y})'/>`, .9),
+  gnocchi: () => `<circle cx='400' cy='300' r='160' fill='#e9dcc0' opacity='.9'/>`
+    + `<g filter='url(#sh)'>` + [[0, 1], [55, 6], [105, 10], [150, 12]].map(([r, n]) => ring(n, r, (x, y, i, a) => `<ellipse cx='${x}' cy='${y}' rx='28' ry='17' fill='#f0e4c4' stroke='#c9b98c' stroke-width='2' transform='rotate(${a + 60} ${x} ${y})'/><path d='M${x - 12} ${y - 5}l24 10M${x - 12} ${y}l24 10' stroke='#d6c79c' stroke-width='2' transform='rotate(${a + 60} ${x} ${y})'/>`)).join("") + `</g>`
+    + ring(5, 120, (x, y, i, a) => `<ellipse cx='${x}' cy='${y}' rx='28' ry='12' fill='#6f9560' transform='rotate(${a} ${x} ${y})'/><path d='M${x - 22} ${y}h44' stroke='#4f7545' stroke-width='2' transform='rotate(${a} ${x} ${y})'/>`, .4)
+    + ring(8, 85, (x, y) => `<circle cx='${x}' cy='${y}' r='9' fill='#a47a4a'/><circle cx='${x + 2}' cy='${y - 2}' r='3' fill='#c79c68'/>`, .8),
+  cremeux: () => `<g filter='url(#sh)'><ellipse cx='400' cy='295' rx='128' ry='84' fill='#3a2217' transform='rotate(-10 400 295)'/></g><ellipse cx='370' cy='268' rx='70' ry='24' fill='#6b4430' opacity='.55' transform='rotate(-10 370 268)'/>`
+    + `<path d='M230 400q80 40 170 10t170 20' stroke='#c98a3b' stroke-width='9' fill='none' stroke-linecap='round'/><path d='M250 205q90-50 190-20' stroke='#c98a3b' stroke-width='6' fill='none' stroke-linecap='round' opacity='.8'/>`
+    + ring(16, 160, (x, y, i) => `<circle cx='${x}' cy='${y}' r='${5 + (i % 3) * 2}' fill='#2a1a12' stroke='#5a3b28'/>`, .2)
+    + ring(7, 60, (x, y, i, a) => `<polygon points='${x},${y - 9} ${x + 10},${y} ${x},${y + 8} ${x - 9},${y}' fill='#C9A96E' transform='rotate(${a} ${x} ${y})'/>`, .4, 410, 285),
+  pannacotta: () => ring(6, 150, (x, y, i, a) => `<ellipse cx='${x + 12}' cy='${y + 14}' rx='34' ry='15' fill='#e8a0ae' opacity='.85' transform='rotate(${a + 30} ${x} ${y})'/>`, .5)
+    + `<g filter='url(#sh)'><circle cx='400' cy='300' r='100' fill='#f4ecd8'/><circle cx='400' cy='300' r='100' fill='none' stroke='#e0d3b4' stroke-width='3'/><ellipse cx='365' cy='262' rx='42' ry='22' fill='#fff' opacity='.6' transform='rotate(-30 365 262)'/></g>`
+    + ring(6, 150, (x, y, i, a) => `<circle cx='${x}' cy='${y}' r='26' fill='#c23b4e'/><circle cx='${x - 6}' cy='${y - 7}' r='8' fill='#e86a7a' opacity='.7'/><circle cx='${x}' cy='${y}' r='10' fill='#f4ecd8' opacity='.35'/>`)
+    + ring(24, 125, (x, y, i) => `<circle cx='${x}' cy='${y}' r='${3 + (i % 3)}' fill='#8fb361'/>`, .15),
+  cheesecake: () => `<g filter='url(#sh)'><polygon points='235,345 560,225 590,335' fill='#f2e1b8'/><polygon points='235,345 560,225 560,262 245,385' fill='#5a3419'/><polygon points='245,385 590,335 590,372 262,418' fill='#7a4a24'/><polygon points='560,225 590,335 590,372 560,262' fill='#e4cd96'/></g>`
+    + `<path d='M300 330q80-60 170-60' stroke='#e3a93a' stroke-width='7' fill='none' stroke-linecap='round' opacity='.9'/><path d='M340 355q90-40 160-20' stroke='#e3a93a' stroke-width='5' fill='none' stroke-linecap='round' opacity='.8'/>`
+    + ring(3, 150, (x, y) => `<circle cx='${x}' cy='${y}' r='36' fill='#5c2a4a'/><circle cx='${x}' cy='${y}' r='22' fill='#c8708a'/><circle cx='${x}' cy='${y}' r='9' fill='#e8a8b6'/>`, 3.7)
+    + ring(10, 190, (x, y, i, a) => `<rect x='${x - 12}' y='${y - 2}' width='24' height='4' rx='2' fill='#7da84f' transform='rotate(${a} ${x} ${y})'/>`, 3.2),
+  oldfashioned: () => ring(3, 75, (x, y, i, a) => `<path d='M${x - 40} ${y}q40-60 80 0' stroke='#cfcfcf' stroke-width='5' fill='none' opacity='.2' stroke-linecap='round'/>`, 3.6, 400, 130)
+    + `<g filter='url(#sh)'><circle cx='400' cy='300' r='128' fill='#b26a1f' opacity='.92' stroke='#e8d9b0' stroke-width='8'/><circle cx='400' cy='300' r='104' fill='#c4802c' opacity='.8'/><circle cx='400' cy='300' r='120' fill='none' stroke='#fff' stroke-opacity='.25' stroke-width='2'/></g>`
+    + `<rect x='345' y='245' width='110' height='110' rx='14' fill='#e8f0f2' fill-opacity='.35' stroke='#fff' stroke-opacity='.55' stroke-width='3'/><path d='M360 262l40 40' stroke='#fff' stroke-opacity='.5' stroke-width='3'/>`
+    + `<path d='M300 210q70-40 150-10' stroke='#e08a22' stroke-width='16' fill='none' stroke-linecap='round'/><path d='M300 210q70-40 150-10' stroke='#f4b24c' stroke-width='4' fill='none' stroke-linecap='round'/>`
+    + `<ellipse cx='500' cy='350' rx='24' ry='9' fill='#6f9560' transform='rotate(-30 500 350)'/>`,
+  ginfizz: () => `<g filter='url(#sh)'><circle cx='400' cy='300' r='130' fill='#efe9d8' opacity='.92' stroke='#e8e2d0' stroke-width='8'/><circle cx='400' cy='300' r='108' fill='#fbf7ea'/></g>`
+    + `<g transform='translate(400 300)'><circle r='62' fill='#e8cf4a' stroke='#f4e58a' stroke-width='6'/><circle r='50' fill='#f2de6a'/>` + [0, 45, 90, 135].map((a) => `<line x1='-50' y1='0' x2='50' y2='0' stroke='#e8cf4a' stroke-width='4' transform='rotate(${a})'/>`).join("") + `<circle r='10' fill='#e8cf4a'/></g>`
+    + ring(3, 95, (x, y, i, a) => `<g transform='translate(${x} ${y})'>` + ring(5, 14, (px, py, j, pa) => `<ellipse cx='${px - x}' cy='${py - y}' rx='15' ry='8' fill='#fff' stroke='#e8e2d0' transform='rotate(${pa} ${px - x} ${py - y})'/>`, 0, x, y) + `<circle r='5' fill='#e8c45a'/></g>`, 3.8)
+    + ring(14, 160, (x, y) => `<circle cx='${x}' cy='${y}' r='3' fill='#C9A96E' opacity='.5'/>`, .2)
+};
+const art = (key) => "data:image/svg+xml;charset=utf-8," + encodeURIComponent(artFrame(ART[key]()));
+
+const menuItems = [
+  { id: 1, name: "Charred Truffle Mushrooms", category: "Starters", price: 780, featured: true, description: "Wood-fired Nilgiri mushrooms, black truffle butter, aged parmesan crisp and toasted hazelnut.", image: art("mushrooms") },
+  { id: 2, name: "Smoked Burrata", category: "Starters", price: 850, featured: false, description: "Applewood-smoked burrata, heirloom tomato, curry leaf oil and warm sourdough.", image: art("burrata") },
+  { id: 3, name: "Tandoori Scallops", category: "Starters", price: 1150, featured: false, description: "Seared Kerala scallops, saffron makhani, pickled shallot and crisp lotus root.", image: art("scallops") },
+  { id: 4, name: "Black Garlic Risotto", category: "Mains", price: 1250, featured: true, description: "Carnaroli rice, fermented black garlic, wild mushroom jus and shaved pecorino.", image: art("risotto") },
+  { id: 5, name: "Herb-Crusted Sea Bass", category: "Mains", price: 1650, featured: true, description: "Line-caught sea bass, green herb crust, coconut beurre blanc and charred baby leeks.", image: art("seabass") },
+  { id: 6, name: "Slow-Braised Lamb Shank", category: "Mains", price: 1850, featured: false, description: "Twelve-hour lamb shank, Kashmiri chilli jus, pomegranate and saffron mash.", image: art("lamb") },
+  { id: 7, name: "Wild Mushroom Gnocchi", category: "Mains", price: 1180, featured: false, description: "Hand-rolled potato gnocchi, roasted mushroom cream, sage butter and toasted walnut.", image: art("gnocchi") },
+  { id: 8, name: "Dark Chocolate Crémeux", category: "Desserts", price: 620, featured: true, description: "70% single-origin chocolate, salted caramel, cocoa nib crumble and gold leaf.", image: art("cremeux") },
+  { id: 9, name: "Cardamom Panna Cotta", category: "Desserts", price: 560, featured: false, description: "Silky cardamom cream, rose-poached strawberries and pistachio tuile.", image: art("pannacotta") },
+  { id: 10, name: "Burnt Honey Cheesecake", category: "Desserts", price: 640, featured: false, description: "Basque-style cheesecake, burnt wild honey, roasted figs and thyme.", image: art("cheesecake") },
+  { id: 11, name: "Smoked Sage Old Fashioned", category: "Drinks", price: 750, featured: true, description: "Aged bourbon, sage smoke, demerara and orange bitters, served over a clear ice block.", image: art("oldfashioned") },
+  { id: 12, name: "Jasmine & Gin Fizz", category: "Drinks", price: 690, featured: false, description: "Small-batch gin, jasmine tea syrup, lemon, egg white and a dash of soda.", image: art("ginfizz") }
+];
+const categories = ["All", "Starters", "Mains", "Desserts", "Drinks"];
+
+/* ============ HELPERS ============ */
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const formatPrice = (n) => "₹" + n.toLocaleString("en-IN");
+
+/* ============ CONTACT LINKS ============ */
+function initLinks() {
+  const wa = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Hello " + CONFIG.restaurantName + ", I would like to make an enquiry.")}`;
+  $("#whatsapp-btn").href = wa;
+  $("#footer-whatsapp").href = wa;
+  $("#directions-btn").href = CONFIG.mapsUrl;
+  $("#map-frame").src = CONFIG.mapsEmbedUrl;
+  $("#year").textContent = new Date().getFullYear();
+}
+
+/* ============ NAVIGATION ============ */
+function initNav() {
+  const navbar = $("#navbar"), toggle = $("#menu-toggle"), panel = $("#mobile-menu");
+  if (!navbar || !toggle || !panel) return;
+
+  const setScrolled = () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    const solid = window.scrollY > 40 || open;
+    navbar.classList.toggle("glass", solid);
+    navbar.classList.toggle("border-b", solid);
+    navbar.classList.toggle("border-white/10", solid);
+  };
+
+  const setMenu = (open) => {
+    const isMobile = window.innerWidth < 1024;
+    if (!isMobile) open = false;
+
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+    panel.setAttribute("aria-hidden", String(!open));
+    panel.style.maxHeight = open ? panel.scrollHeight + "px" : "0px";
+    $("#bar1").style.transform = open ? "translateY(8px) rotate(45deg)" : "";
+    $("#bar2").style.opacity = open ? "0" : "1";
+    $("#bar3").style.transform = open ? "translateY(-8px) rotate(-45deg)" : "";
+    setScrolled();
+  };
+
+  toggle.addEventListener("click", () => {
+    setMenu(toggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  $$(".mobile-link").forEach((link) => {
+    link.addEventListener("click", () => setMenu(false));
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setMenu(false);
+  });
+
+  document.addEventListener("click", (e) => {
+    if (
+      toggle.getAttribute("aria-expanded") === "true" &&
+      !panel.contains(e.target) &&
+      !toggle.contains(e.target)
+    ) {
+      setMenu(false);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) {
+      setMenu(false);
+    } else if (toggle.getAttribute("aria-expanded") === "true") {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+
+  window.addEventListener("scroll", setScrolled, { passive: true });
+  setScrolled();
+
+  const links = $$(".nav-link");
+  const sections = ["home", "menu", "story", "reservations", "contact"]
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  if ("IntersectionObserver" in window) {
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          links.forEach((link) =>
+            link.classList.toggle("active", link.dataset.link === entry.target.id)
+          );
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+
+    sections.forEach((section) => spy.observe(section));
+  }
+}
+
+/* ============ MENU ============ */
+let activeCategory = "All";
+function renderFilters() {
+  const wrap = $("#menu-filters");
+  wrap.innerHTML = categories.map((c) =>
+    `<button type="button" class="filter-btn ${c === activeCategory ? "active" : ""}" data-cat="${c}" aria-pressed="${c === activeCategory}">${c}</button>`
+  ).join("");
+  $$(".filter-btn", wrap).forEach((btn) => btn.addEventListener("click", () => {
+    activeCategory = btn.dataset.cat;
+    renderFilters();
+    renderMenu();
+  }));
+}
+function renderMenu() {
+  const grid = $("#menu-grid");
+  if (!grid) return;
+
+  const items = activeCategory === "All"
+    ? menuItems
+    : menuItems.filter((item) => item.category === activeCategory);
+
+  grid.setAttribute("aria-busy", "true");
+
+  grid.innerHTML = items.map((item, idx) => `
+    <article class="menu-card flex flex-col" style="animation-delay:${idx * 60}ms">
+      <div class="relative overflow-hidden aspect-[4/3]">
+        <img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async" class="w-full h-full object-cover" onerror="imgFail(this)">
+        <span class="absolute top-3 left-3 text-[.62rem] tracking-[.2em] uppercase px-3 py-1.5 ${item.featured ? "bg-gold text-noir" : "glass text-ivory border border-white/15"}">${item.featured ? "Chef's Signature" : item.category}</span>
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <div class="flex items-start justify-between gap-4">
+          <h3 class="font-display text-2xl leading-tight">${item.name}</h3>
+          <span class="text-gold font-display text-xl whitespace-nowrap">${formatPrice(item.price)}</span>
+        </div>
+        <p class="text-sm text-muted font-light leading-relaxed mt-3">${item.description}</p>
+      </div>
+    </article>`).join("");
+
+  grid.setAttribute("aria-busy", "false");
+}
+
+/* ============ SCROLL REVEAL & COUNTERS ============ */
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target), dec = parseInt(el.dataset.decimals || "0", 10), suffix = el.dataset.suffix || "";
+  if (reduceMotion) { el.textContent = target.toFixed(dec) + suffix; return; }
+  const start = performance.now(), dur = 1800;
+  const tick = (now) => {
+    const p = Math.min((now - start) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = (target * eased).toFixed(dec) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+function initReveal() {
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((en) => {
+      if (!en.isIntersecting) return;
+      en.target.classList.add("visible");
+      $$(".counter", en.target).forEach(animateCounter);
+      obs.unobserve(en.target);
+    });
+  }, { threshold: 0.15 });
+  $$(".reveal").forEach((el) => io.observe(el));
+}
+
+/* ============ RESERVATION FORM ============ */
+function initForm() {
+  const form = $("#reservation-form");
+  const status = $("#form-status");
+  const dateInput = $("#date");
+  if (!form || !status || !dateInput) return;
+
+  const pad = (n) => String(n).padStart(2, "0");
+  const toISO = (date) =>
+    `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  dateInput.min = toISO(today);
+
+  const max = new Date(today);
+  max.setDate(max.getDate() + 90);
+  dateInput.max = toISO(max);
+
+  const rules = {
+    name: (value) =>
+      value.trim().length >= 2 ? "" : "Please enter your full name.",
+
+    phone: (value) => {
+      const digits = value.replace(/\D/g, "");
+      return digits.length >= 10 && digits.length <= 15
+        ? ""
+        : "Enter a valid phone number (10–15 digits).";
+    },
+
+    email: (value) =>
+      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value.trim())
+        ? ""
+        : "Enter a valid email address.",
+
+    date: (value) => {
+      if (!value) return "Please choose a date.";
+      if (value < dateInput.min || value > dateInput.max) {
+        return "Please choose a date within the next 90 days.";
+      }
+
+      const [year, month, day] = value.split("-").map(Number);
+      const selected = new Date(year, month - 1, day);
+
+      return selected.getDay() === 1
+        ? "We are closed on Mondays. Please pick another day."
+        : "";
+    },
+
+    time: (value) => (value ? "" : "Please select a time."),
+    guests: (value) => (value ? "" : "Please select the number of guests.")
+  };
+
+  const check = (key) => {
+    const field = form.elements[key];
+    if (!field || !rules[key]) return true;
+
+    const message = rules[key](field.value);
+    const error = $("#err-" + key);
+
+    if (error) error.textContent = message;
+    field.classList.toggle("invalid", Boolean(message));
+    field.setAttribute("aria-invalid", String(Boolean(message)));
+
+    return !message;
+  };
+
+  Object.keys(rules).forEach((key) => {
+    const field = form.elements[key];
+    if (!field) return;
+
+    field.addEventListener("blur", () => check(key));
+    field.addEventListener("input", () => {
+      if (field.classList.contains("invalid")) check(key);
+    });
+    field.addEventListener("change", () => check(key));
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const keys = Object.keys(rules);
+    const valid = keys.map(check).every(Boolean);
+
+    if (!valid) {
+      status.textContent = "Please correct the highlighted fields.";
+      const firstBad = keys.find(
+        (key) => form.elements[key].classList.contains("invalid")
+      );
+      if (firstBad) form.elements[firstBad].focus();
+      return;
+    }
+
+    const f = form.elements;
+    const selectedDate = new Date(`${f.date.value}T00:00:00`);
+    const dateLabel = selectedDate.toLocaleDateString("en-IN", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+    const message = [
+      `*New Reservation Request - ${CONFIG.restaurantName}*`,
+      "",
+      `Name: ${f.name.value.trim()}`,
+      `Phone: ${f.phone.value.trim()}`,
+      `Email: ${f.email.value.trim()}`,
+      `Date: ${dateLabel}`,
+      `Time: ${f.time.value}`,
+      `Guests: ${f.guests.value}`,
+      `Seating: ${f.seating.value}`,
+      `Occasion: ${f.occasion.value}`,
+      `Special Request: ${f.request.value.trim() || "None"}`
+    ].join("\n");
+
+    const url =
+      `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    status.textContent = "Opening WhatsApp to send your request...";
+
+    // Direct navigation is more reliable on phones than window.open().
+    window.location.href = url;
+  });
+}
+
+/* ============ INIT ============ */
+document.addEventListener("DOMContentLoaded", () => {
+  initLinks();
+  initNav();
+  renderFilters();
+  renderMenu();
+  initReveal();
+  initForm();
+});
+</script>
+</body>
+</html>
